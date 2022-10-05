@@ -7,7 +7,11 @@ public class MemberController : MonoBehaviour
 {
     public NavMeshAgent agent;
     Animator animator;
+    public C_MovingState movingState;
     public Transform pointer;
+
+    public float weaponCoolDown;
+    public LayerMask enemyLayer;
 
     void Start()
     {
@@ -36,34 +40,57 @@ public class MemberController : MonoBehaviour
     void Update()
     {
         pointer.position = transform.position;
-        if(agent.remainingDistance <= 0.3f)
+        if (!agent.pathPending)
         {
-            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                animator.SetBool("Walk", false);
-                HoldPosition();
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    HoldPosition();
+                    weaponCoolDown -= Time.deltaTime;
+                    if (weaponCoolDown <= 0f)
+                    {
+                        weaponCoolDown = 2f;
+                        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 15f, enemyLayer);
+                        foreach (var hitCollider in hitColliders)
+                        {
+                            transform.LookAt(hitCollider.transform);
+                            animator.SetTrigger("Attack");
+                        }
+                    }
+                }
             }
         }
-        else
+        if (agent.remainingDistance > agent.stoppingDistance)
         {
-            animator.SetBool("Walk", true);
+            animator.SetBool(movingState.ToString(), true);   
         }
-        
     }
 
     public void HoldPosition()
     {
-        agent.speed = 4;
+        animator.SetBool("Walk", false);
+        animator.SetBool("Run", false);
     }
     
     public void MoveOrder(Vector3 destination)
     {
+        HoldPosition();
+        agent.speed = 4;
+        movingState = C_MovingState.Walk;
         agent.SetDestination(destination);
     }
 
     public void ChaseOrder(Vector3 destination)
     {
-        agent.speed = 12;
+        HoldPosition();
+        agent.speed = 8;
+        movingState = C_MovingState.Run;
         agent.SetDestination(destination);
+    }
+
+    public void EndAttack()
+    {
+        animator.ResetTrigger("Attack");
     }
 }

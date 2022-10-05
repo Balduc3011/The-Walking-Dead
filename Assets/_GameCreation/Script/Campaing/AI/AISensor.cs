@@ -43,11 +43,15 @@ public class AISensor : MonoBehaviour
                 scanTimer += scanInterval;
                 Scan();
             }
-            if (agent.remainingDistance <= 0.3f)
+            
+            if (!agent.pathPending)
             {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                if (agent.remainingDistance <= agent.stoppingDistance)
                 {
-                    ToOtherPatrolPos();
+                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                    {
+                        ToOtherPatrolPos();
+                    }
                 }
             }
         }
