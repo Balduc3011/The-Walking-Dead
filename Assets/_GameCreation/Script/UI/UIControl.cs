@@ -19,7 +19,7 @@ public class UIControl : MonoBehaviour
 
     public void OnStandBtnClick()
     {
-        CPlayerControl.Instance.OrderChangeStand();
+        //CPlayerControl.Instance.OrderChangeStand();
     }
 
 }
