@@ -30,15 +30,29 @@ public class InputManager
             {
                 if (doubleClickWait)
                 {
-                    CPlayerControl.Instance.selectedMember.ChaseOrder(hit.point);
+                    RunnerManager.Instance.runner.ChaseOrder(hit.point);
                 }
                 else
                 {
-                    CPlayerControl.Instance.selectedMember.MoveOrder(hit.point);
+                    RunnerManager.Instance.runner.MoveOrder(hit.point);
                 }
                 doubleClickWait = true;
                 doubleClickCounter = 0;
             }
+        }
+
+        // Change stand
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            RunnerManager.Instance.OrderChangeStand();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            RunnerManager.Instance.MelleAttackEnemy();
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            RunnerManager.Instance.GunAttackEnemy();
         }
     }
 }

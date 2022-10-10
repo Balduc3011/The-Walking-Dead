@@ -1747,8 +1747,8 @@ GameObject:
   - component: {fileID: 8895076320537408088}
   - component: {fileID: 8895076320537408090}
   - component: {fileID: 1632363553758987219}
-  - component: {fileID: 4060124987942189130}
   - component: {fileID: 2987941692268885387}
+  - component: {fileID: 1253948203221464022}
   m_Layer: 6
   m_Name: Daryl
   m_TagString: Untagged
@@ -1886,25 +1886,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4060124987942189130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8802195517029799794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 666c09c07c4b86748878a8ebb2271e4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 1632363553758987219}
-  movingState: 0
-  pointer: {fileID: 0}
-  weaponCoolDown: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 768
 --- !u!65 &2987941692268885387
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1918,6 +1899,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 2, z: 0.5}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1253948203221464022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8802195517029799794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507ae3f01c753444c98c0dcb354403b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1632363553758987219}
+  movingState: 0
+  pointer: {fileID: 0}
+  weaponCoolDown: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &8802210129911216120
 GameObject:
   m_ObjectHideFlags: 0
